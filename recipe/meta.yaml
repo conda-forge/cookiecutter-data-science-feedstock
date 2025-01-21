@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/cookiecutter_data_science-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/cookiecutter_data_science-{{ version }}.tar.gz
   sha256: 3447cb02187027bf51c554fe2fa895b64c17c2c30f53a26dfd6e953c7e7c15a9
 
 build:
@@ -14,15 +14,15 @@ build:
     - ccds = ccds.__main__:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.8
+    - python {{ python_min }}
     - flit-core >=3.2,<4
     - pip
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     - click
     - cookiecutter
 
@@ -32,6 +32,7 @@ test:
     - ccds --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/drivendataorg/cookiecutter-data-science
