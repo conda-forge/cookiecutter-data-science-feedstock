@@ -1,5 +1,5 @@
 {% set name = "cookiecutter-data-science" %}
-{% set version = "2.0.1" %}
+{% set version = "2.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/cookiecutter_data_science-{{ version }}.tar.gz
-  sha256: ed51c2477e1dc1691e23ab257a0b7ea06cc5bc36edbee02d88fda396491a19bb
+  sha256: d32359d0494b67c847c79f63b8af87326f21f83b09882da6d3430b31970cf46e
 
 build:
   entry_points:
