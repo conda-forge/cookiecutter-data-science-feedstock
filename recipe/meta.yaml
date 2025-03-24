@@ -25,6 +25,7 @@ requirements:
     - python >={{ python_min }}
     - click
     - cookiecutter
+    - tomlkit
 
 test:
   commands:
