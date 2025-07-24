@@ -1,0 +1,53 @@
+schema_version: 1
+
+context:
+  name: cookiecutter-data-science
+  version: 2.3.0
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/cookiecutter_data_science-${{ version }}.tar.gz
+  sha256: d56106b510e8327c6f87a601c38325b90292f0269cecf1f61287e0083093aacc
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - ccds = ccds.__main__:main
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - flit-core >=3.2,<4
+    - pip
+  run:
+    - python >=${{ python_min }}
+    - click
+    - cookiecutter
+    - tomlkit
+
+tests:
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - ccds --help
+
+about:
+  summary: A logical, reasonably standardized but flexible project structure for doing and sharing data science work.
+  license: MIT
+  license_file: LICENSE
+  homepage: https://github.com/drivendataorg/cookiecutter-data-science
+  documentation: https://cookiecutter-data-science.drivendata.org/
+
+extra:
+  recipe-maintainers:
+    - jayqi
+    - thewchan
